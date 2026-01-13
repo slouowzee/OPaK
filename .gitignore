@@ -1,24 +1,52 @@
-*.log
+# System
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+Icon?
+
+# Editors / IDEs
+.idea
+.vscode
+.fleet
+.nova
+.zed
+.phpactor.json
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+
+# Laravel
 .env
 .env.backup
 .env.production
-.phpactor.json
-.phpunit.result.cache
-/.fleet
-/.idea
-/.nova
-/.phpunit.cache
-/.vscode
-/.zed
 /auth.json
+/vendor
 /node_modules
 /public/build
 /public/hot
 /public/storage
 /storage/*.key
 /storage/pail
-/vendor
+.phpunit.result.cache
+/.phpunit.cache
 Homestead.json
 Homestead.yaml
-Thumbs.db
+npm-debug.log
+yarn-error.log
+
+# Lock files
+*.lock
+package-lock.json
+composer.lock
+yarn.lock
+pnpm-lock.yaml

@@ -15,13 +15,10 @@
                         Accueil
                     </a>
                     <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-300 hover:border-gray-300 transition duration-150 ease-in-out">
-                        Explorer
+                        Rechercher
                     </a>
-                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-300 hover:border-gray-300 transition duration-150 ease-in-out">
+					<a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-300 hover:border-gray-300 transition duration-150 ease-in-out">
                         Notifications
-                    </a>
-                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-300 hover:border-gray-300 transition duration-150 ease-in-out">
-                        Messages
                     </a>
                 </div>
             </div>
@@ -29,9 +26,7 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Post Button (Mini) -->
-                <button class="bg-white text-black text-sm font-bold py-2 px-4 rounded-full mr-4 hover:bg-gray-200 transition">
-                    Poster
-                </button>
+                <!-- Removed per user request -->
 
                 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
                     <div @click="open = ! open">
@@ -55,13 +50,16 @@
                          x-transition:leave-end="transform opacity-0 scale-95"
                          class="absolute right-0 z-50 mt-2 w-48 rounded-md shadow-lg origin-top-right bg-gray-900 border border-gray-700 py-1" 
                          style="display: none;">
-                        <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 transition">
-                            Profil
+                        <a href="{{ route('profile.wall', ['username' => Auth::user()->name]) }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 transition">
+                            Votre page
+                        </a>
+						<a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 transition">
+                            Vos informations
                         </a>
                         <form method="POST" action="{{ route('logout') }}">
                              @csrf
                              <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 transition">
-                                 Deconnexion
+                                 Déconnexion
                              </button>
                         </form>
                     </div>

@@ -11,6 +11,18 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+	public function wall(string $name): View
+	{
+		$user = Auth::user();
+		if ($user->name !== $name) {
+			$user = \App\Models\User::where('name', $name)->firstOrFail();
+		}
+		return view('profile.wall', [
+			'user' => $user,
+			'messages' => $user->messages()->latest()->get(),
+		]);
+	}
+
     /**
      * Display the user's profile form.
      */

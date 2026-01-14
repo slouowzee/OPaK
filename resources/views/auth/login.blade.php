@@ -13,23 +13,21 @@
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <label for="password" class="block font-bold text-sm text-gray-400">Mot de passe</label>
+        <div class="mt-4" x-data="{ show: false }">
+            <div class="flex justify-between items-center mb-1">
+                <label for="password" class="block font-bold text-sm text-gray-400">Mot de passe</label>
+                <button type="button" @click="show = !show" class="text-xs text-blue-400 hover:text-white transition">
+                    <span x-show="!show">Afficher</span>
+                    <span x-show="show" style="display: none;">Masquer</span>
+                </button>
+            </div>
             <input id="password" class="block mt-1 w-full bg-black border border-gray-800 focus:border-white focus:ring-0 text-white rounded-md shadow-sm placeholder-gray-600"
-                            type="password"
+                            :type="show ? 'text' : 'password'"
                             name="password"
                             required autocomplete="current-password" 
                             placeholder="••••••••••••" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center cursor-pointer">
-                <input id="remember_me" type="checkbox" class="rounded bg-black border-gray-700 text-white shadow-sm focus:ring-0 focus:ring-offset-0" name="remember">
-                <span class="ms-2 text-sm text-gray-400">Se souvenir de moi</span>
-            </label>
         </div>
 
         <div class="flex items-center justify-between mt-8">

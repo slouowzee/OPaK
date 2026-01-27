@@ -1,25 +1,56 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+    <x-slot name="maxWidth">max-w-5xl</x-slot>
+    
+    <div class="flex flex-col md:flex-row gap-8 py-6" x-data="{ tab: 'profile' }">
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-64 flex-shrink-0">
+            <nav class="flex flex-col space-y-1">
+                <button 
+                    @click="tab = 'profile'" 
+                    :class="tab === 'profile' ? 'text-blue-500' : 'text-gray-400'" 
+                    class="group flex items-center px-4 py-3 text-sm font-bold w-full text-left"
+                >
+                    {{ __('Profile Information') }}
+                </button>
+                
+                <button 
+                    @click="tab = 'password'" 
+                    :class="tab === 'password' ? 'text-blue-500' : 'text-gray-400'" 
+                    class="group flex items-center px-4 py-3 text-sm font-bold w-full text-left"
+                >
+                    {{ __('Change Password') }}
+                </button>
+                
+                <div class="border-t border-gray-800 my-2 mx-4"></div>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <button 
+                    @click="tab = 'delete'" 
+                    :class="tab === 'delete' ? 'text-red-500' : 'text-red-500'" 
+                    class="group flex items-center px-4 py-3 text-sm font-bold w-full text-left"
+                >
+                    {{ __('Deactivate Account') }}
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 min-w-0 border-l border-gray-800 pl-0 md:pl-8">
+            <!-- Profile Info Tab -->
+            <div x-show="tab === 'profile'">
                 <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <!-- Password Tab -->
+            <div x-show="tab === 'password'" style="display: none;">
                 <div class="max-w-xl">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <!-- Delete Tab -->
+            <div x-show="tab === 'delete'" style="display: none;">
                 <div class="max-w-xl">
                     @include('profile.partials.delete-user-form')
                 </div>

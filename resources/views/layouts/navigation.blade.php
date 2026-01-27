@@ -30,7 +30,7 @@
 
                 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
                     <div @click="open = ! open">
-                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-300 focus:outline-none transition duration-150 ease-in-out cursor-pointer">
+                         <button class="flex items-center text-sm font-medium {{ request()->routeIs('profile.*') ? 'text-white' : 'text-gray-500 hover:text-gray-300' }} focus:outline-none transition duration-150 ease-in-out cursor-pointer">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">

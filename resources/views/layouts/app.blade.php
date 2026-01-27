@@ -28,7 +28,7 @@
             @endif
 
             <!-- Main Content -->
-            <main class="max-w-3xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <main class="{{ $maxWidth ?? 'max-w-3xl' }} mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {{ $slot }}
             </main>
         </div>

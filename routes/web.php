@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('dashboard', [
         'messages' => \App\Models\Message::with('user')->latest()->get()
     ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 	Route::get('/@{username}', [ProfileController::class, 'wall'])->name('profile.wall');
@@ -20,5 +20,5 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::post('/messages', [App\Http\Controllers\MessageController::class, 'store'])
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth'])
     ->name('messages.store');

@@ -48,17 +48,18 @@
                          x-transition:leave="transition ease-in duration-75"
                          x-transition:leave-start="transform opacity-100 scale-100"
                          x-transition:leave-end="transform opacity-0 scale-95"
-                         class="absolute right-0 z-50 mt-2 w-48 rounded-md shadow-lg origin-top-right bg-gray-900 border border-gray-700 py-1" 
+                         class="absolute right-0 z-50 mt-2 w-52 rounded-lg border border-gray-800 bg-black py-2 shadow-xl origin-top-right" 
                          style="display: none;">
-                        <a href="{{ route('profile.wall', ['username' => Auth::user()->name]) }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 transition">
+                        <a href="{{ route('profile.wall', ['username' => Auth::user()->name]) }}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900">
                             Votre page
                         </a>
-						<a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 transition">
+						<a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900">
                             Vos informations
                         </a>
+                        <div class="border-t border-gray-800 my-1"></div>
                         <form method="POST" action="{{ route('logout') }}">
                              @csrf
-                             <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 transition">
+                             <button type="submit" class="block w-full text-left px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900">
                                  Déconnexion
                              </button>
                         </form>

@@ -2,7 +2,7 @@
     <x-slot name="maxWidth">max-w-5xl</x-slot>
     
     <div class="flex flex-col md:flex-row gap-8 py-6" x-data="{ tab: 'profile' }">
-        <!-- Sidebar Navigation -->
+        <!-- Sidebar -->
         <aside class="w-full md:w-64 flex-shrink-0">
             <nav class="flex flex-col space-y-1">
                 <button 
@@ -10,7 +10,7 @@
                     :class="tab === 'profile' ? 'text-blue-500' : 'text-gray-400'" 
                     class="group flex items-center px-4 py-3 text-sm font-bold w-full text-left"
                 >
-                    {{ __('Profile Information') }}
+                    {{ __('Vos informations') }}
                 </button>
                 
                 <button 
@@ -18,7 +18,7 @@
                     :class="tab === 'password' ? 'text-blue-500' : 'text-gray-400'" 
                     class="group flex items-center px-4 py-3 text-sm font-bold w-full text-left"
                 >
-                    {{ __('Change Password') }}
+                    {{ __('Modifier MDP') }}
                 </button>
                 
                 <div class="border-t border-gray-800 my-2 mx-4"></div>
@@ -28,12 +28,12 @@
                     :class="tab === 'delete' ? 'text-red-500' : 'text-red-500'" 
                     class="group flex items-center px-4 py-3 text-sm font-bold w-full text-left"
                 >
-                    {{ __('Deactivate Account') }}
+                    {{ __('Désactiver votre compe') }}
                 </button>
             </nav>
         </aside>
 
-        <!-- Main Content Area -->
+        <!-- Main Tab -->
         <div class="flex-1 min-w-0 border-l border-gray-800 pl-0 md:pl-8">
             <!-- Profile Info Tab -->
             <div x-show="tab === 'profile'">

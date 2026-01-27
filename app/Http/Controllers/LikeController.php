@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
+use App\Notifications\NewLike;
 
 class LikeController extends Controller
 {
@@ -16,9 +17,13 @@ class LikeController extends Controller
         if ($like) {
             $like->delete();
         } else {
-            $message->likes()->create([
+            $like = $message->likes()->create([
                 'user_id' => $user->id
             ]);
+
+            if ($message->user_id !== $user->id) {
+                $message->user->notify(new NewLike($like));
+            }
         }
 
         return back();

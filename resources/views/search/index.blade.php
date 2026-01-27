@@ -83,7 +83,7 @@
                                             </div>
                                             <a href="{{ route('messages.show', $message) }}" class="block">
                                                 <p class="text-gray-200 text-lg leading-snug mb-4">
-                                                    {{ $message->content }}
+                                                    {!! $message->content_formatted !!}
                                                 </p>
                                             </a>
                                             <div class="flex items-center gap-6 text-gray-500">

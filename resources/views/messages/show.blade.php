@@ -61,7 +61,7 @@
                 </div>
 
                 <p class="text-gray-100 text-2xl leading-relaxed font-medium">
-                    {{ $message->content }}
+                    {!! $message->content_formatted !!}
                 </p>
 
                 <div class="pt-6 border-t border-gray-800 flex justify-between items-center text-gray-500 text-sm">
@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
                                 <p class="text-gray-300 text-base leading-relaxed">
-                                    {{ $reply->content }}
+                                    {!! $reply->content_formatted !!}
                                 </p>
                             </div>
                         </div>

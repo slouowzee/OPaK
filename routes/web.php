@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\NotificationController;
 
 Route::get('/', function (Illuminate\Http\Request $request) {
     $feed = $request->query('feed', 'all');
@@ -24,6 +25,7 @@ Route::get('/', function (Illuminate\Http\Request $request) {
 
 Route::middleware('auth')->group(function () {
     Route::get('/search', [SearchController::class, 'index'])->name('search');
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
 	Route::get('/@{username}', [ProfileController::class, 'wall'])->name('profile.wall');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

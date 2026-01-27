@@ -29,7 +29,7 @@ class ProfileController extends Controller
 	}
 
     /**
-     * Display the user's profile form.
+     * Affiche le formulaire de profil de l'utilisateur.
      */
     public function edit(Request $request): View
     {
@@ -39,7 +39,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the user's profile information.
+     * Met à jour les informations de profil de l'utilisateur.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
@@ -66,7 +66,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the user's password.
+     * Met à jour le mot de passe de l'utilisateur.
      */
     public function updatePassword(Request $request): RedirectResponse
     {
@@ -83,7 +83,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show the confirm password view.
+     * Affiche la vue de confirmation du mot de passe.
      */
     public function showConfirmPassword(): View
     {
@@ -91,7 +91,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Confirm the user's password.
+     * Confirme le mot de passe de l'utilisateur.
      */
     public function storeConfirmPassword(Request $request): RedirectResponse
     {
@@ -110,7 +110,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Delete the user's account.
+     * Supprime le compte de l'utilisateur.
      */
     public function destroy(Request $request): RedirectResponse
     {

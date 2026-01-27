@@ -23,6 +23,15 @@ class Message extends Model
         return $this->hasMany(Message::class, 'parent_id')->latest();
     }
 
+    public function getContentFormattedAttribute()
+    {
+        return preg_replace(
+            '/@([a-zA-Z0-9_]+)/',
+            '<a href="/@$1" class="text-blue-500 hover:underline font-bold">@$1</a>',
+            e($this->content)
+        );
+    }
+
     public function likes()
     {
         return $this->hasMany(Like::class);

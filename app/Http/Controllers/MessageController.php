@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\User;
+use App\Notifications\UserMentioned;
+use App\Notifications\NewReply;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -27,7 +30,22 @@ class MessageController extends Controller
 
         $message = $request->user()->messages()->create($validated);
 
+        // Parsing mentions
+        preg_match_all('/@([a-zA-Z0-9_]+)/', $message->content, $matches);
+        $usernames = array_unique($matches[1]);
+
+        foreach ($usernames as $username) {
+            $user = User::where('name', $username)->first();
+            if ($user && $user->id !== auth()->id()) {
+                $user->notify(new UserMentioned($message));
+            }
+        }
+
         if ($request->filled('parent_id')) {
+            $parentMessage = \App\Models\Message::find($request->parent_id);
+            if ($parentMessage && $parentMessage->user_id !== auth()->id()) {
+                $parentMessage->user->notify(new NewReply($message));
+            }
             return back()->with('status', 'reply-posted');
         }
 

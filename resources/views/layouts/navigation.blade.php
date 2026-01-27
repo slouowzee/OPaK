@@ -15,8 +15,14 @@
                     <a href="{{ route('search') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('search') ? 'border-white text-white' : 'border-transparent text-gray-500 hover:text-gray-300 hover:border-gray-300' }} text-sm font-medium leading-5 transition duration-150 ease-in-out">
                         Rechercher
                     </a>
-					<a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-300 hover:border-gray-300 transition duration-150 ease-in-out">
+					<a href="{{ route('notifications') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('notifications') ? 'border-white text-white' : 'border-transparent text-gray-500 hover:text-gray-300 hover:border-gray-300' }} text-sm font-medium leading-5 transition duration-150 ease-in-out relative">
                         Notifications
+                        @if(auth()->user()->unreadNotifications->count() > 0)
+                            <span class="absolute top-3 -right-2 flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                            </span>
+                        @endif
                     </a>
                 </div>
             </div>

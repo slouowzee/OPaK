@@ -97,7 +97,7 @@
                             </div>
                             <a href="{{ route('messages.show', $message) }}" class="block">
                                 <p class="text-gray-100 text-lg leading-relaxed">
-                                    {{ $message->content }}
+                                    {!! $message->content_formatted !!}
                                 </p>
                             </a>
                             <div class="flex items-center gap-4 pt-2 text-gray-500">
@@ -132,7 +132,7 @@
                                 <span class="text-[10px] font-mono text-gray-500 mb-2 uppercase tracking-widest">En réponse à <a href="{{ route('profile.wall', ['username' => $reply->parent->user->name]) }}" class="text-blue-500 hover:underline">@ {{ strtolower(str_replace(' ', '', $reply->parent->user->name)) }}</a></span>
                                 <a href="{{ route('messages.show', $reply) }}" class="block">
                                     <p class="text-gray-100 text-lg leading-relaxed">
-                                        {{ $reply->content }}
+                                        {!! $reply->content_formatted !!}
                                     </p>
                                 </a>
                             </div>

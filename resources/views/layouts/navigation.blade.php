@@ -2,19 +2,17 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="text-2xl font-black text-white tracking-widest">
                         OPaK
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('dashboard') ? 'border-white text-white' : 'border-transparent text-gray-500 hover:text-gray-300 hover:border-gray-300' }} text-sm font-medium leading-5 transition duration-150 ease-in-out">
                         Accueil
                     </a>
-                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-300 hover:border-gray-300 transition duration-150 ease-in-out">
+                    <a href="{{ route('search') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('search') ? 'border-white text-white' : 'border-transparent text-gray-500 hover:text-gray-300 hover:border-gray-300' }} text-sm font-medium leading-5 transition duration-150 ease-in-out">
                         Rechercher
                     </a>
 					<a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-300 hover:border-gray-300 transition duration-150 ease-in-out">
@@ -23,14 +21,19 @@
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <!-- Post Button (Mini) -->
-                <!-- Removed per user request -->
-
                 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
                     <div @click="open = ! open">
-                         <button class="flex items-center text-sm font-medium {{ request()->routeIs('profile.*') ? 'text-white' : 'text-gray-500 hover:text-gray-300' }} focus:outline-none transition duration-150 ease-in-out cursor-pointer">
+                         <button class="flex items-center gap-2 text-sm font-medium {{ request()->routeIs('profile.*') ? 'text-white' : 'text-gray-500 hover:text-gray-300' }} focus:outline-none transition duration-150 ease-in-out cursor-pointer">
+                            <div class="w-8 h-8 rounded-lg overflow-hidden bg-gray-800 border border-gray-700">
+                                @if(Auth::user()->avatar)
+                                    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" class="w-full h-full object-cover" alt="">
+                                @else
+                                    <svg class="w-full h-full text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                    </svg>
+                                @endif
+                            </div>
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
@@ -42,10 +45,6 @@
                     </div>
 
                     <div x-show="open" 
-                         x-transition:enter="transition ease-out duration-200"
-                         x-transition:enter-start="transform opacity-0 scale-95"
-                         x-transition:enter-end="transform opacity-100 scale-100"
-                         x-transition:leave="transition ease-in duration-75"
                          x-transition:leave-start="transform opacity-100 scale-100"
                          x-transition:leave-end="transform opacity-0 scale-95"
                          class="absolute right-0 z-50 mt-2 w-52 rounded-lg border border-gray-800 bg-black py-2 shadow-xl origin-top-right" 
@@ -67,7 +66,6 @@
                 </div>
             </div>
 
-            <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">

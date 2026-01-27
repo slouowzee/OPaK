@@ -3,14 +3,27 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 
-Route::get('/', function () {
+Route::get('/', function (Illuminate\Http\Request $request) {
+    $feed = $request->query('feed', 'all');
+    $user = Auth::user();
+
+    $query = \App\Models\Message::whereNull('parent_id')->with(['user', 'likes', 'replies']);
+
+    if ($feed === 'following') {
+        $followingIds = $user->followings()->pluck('followed_id');
+        $query->whereIn('user_id', $followingIds);
+    }
+
     return view('dashboard', [
-        'messages' => \App\Models\Message::with('user')->latest()->get()
+        'messages' => $query->latest()->get(),
+        'feed' => $feed
     ]);
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/search', [SearchController::class, 'index'])->name('search');
 	Route::get('/@{username}', [ProfileController::class, 'wall'])->name('profile.wall');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -22,3 +35,15 @@ require __DIR__.'/auth.php';
 Route::post('/messages', [App\Http\Controllers\MessageController::class, 'store'])
     ->middleware(['auth'])
     ->name('messages.store');
+
+Route::get('/messages/{message}', [App\Http\Controllers\MessageController::class, 'show'])
+    ->middleware(['auth'])
+    ->name('messages.show');
+
+Route::post('/messages/{message}/like', [App\Http\Controllers\LikeController::class, 'toggle'])
+    ->middleware(['auth'])
+    ->name('messages.like');
+
+Route::post('/users/{user}/follow', [App\Http\Controllers\FollowController::class, 'toggle'])
+    ->middleware(['auth'])
+    ->name('users.follow');

@@ -7,18 +7,15 @@
 
         <title>{{ config('app.name', 'OPaK') }}</title>
 
-        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased bg-black text-white">
         <div class="min-h-screen bg-black">
             @include('layouts.navigation')
 
-            <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-gray-900 shadow border-b border-gray-800">
                     <div class="max-w-3xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -27,7 +24,6 @@
                 </header>
             @endif
 
-            <!-- Main Content -->
             <main class="{{ $maxWidth ?? 'max-w-3xl' }} mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {{ $slot }}
             </main>

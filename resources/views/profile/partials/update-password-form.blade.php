@@ -1,7 +1,7 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-white">
-            {{ __('Mettre à jour votre mot de passxe') }}
+            {{ __('Mettre à jour votre mot de passe') }}
         </h2>
     </header>
 

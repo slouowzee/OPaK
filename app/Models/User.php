@@ -20,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
+        'banner',
     ];
 
     /**
@@ -57,5 +59,15 @@ class User extends Authenticatable
     public function followings()
     {
         return $this->belongsToMany(User::class, 'followers', 'user_id', 'followed_id');
+    }
+
+    public function isFollowing(User $user)
+    {
+        return $this->followings()->where('followed_id', $user->id)->exists();
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }

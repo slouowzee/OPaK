@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -22,7 +23,8 @@ class ProfileController extends Controller
 		}
 		return view('profile.wall', [
 			'user' => $user,
-			'messages' => $user->messages()->latest()->get(),
+			'messages' => $user->messages()->whereNull('parent_id')->latest()->get(),
+			'replies' => $user->messages()->whereNotNull('parent_id')->with('parent.user')->latest()->get(),
 		]);
 	}
 
@@ -41,9 +43,24 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $user->fill($request->validated());
 
-        $request->user()->save();
+        if ($request->hasFile('avatar')) {
+            if ($user->avatar) {
+                Storage::disk('public')->delete($user->avatar);
+            }
+            $user->avatar = $request->file('avatar')->store('avatars', 'public');
+        }
+
+        if ($request->hasFile('banner')) {
+            if ($user->banner) {
+                Storage::disk('public')->delete($user->banner);
+            }
+            $user->banner = $request->file('banner')->store('banners', 'public');
+        }
+
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

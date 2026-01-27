@@ -24,6 +24,11 @@ class User extends Authenticatable
         'banner',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

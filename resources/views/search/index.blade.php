@@ -34,7 +34,7 @@
                     <h2 class="text-sm font-black text-gray-500 uppercase tracking-[0.2em] mb-8">Utilisateurs</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         @foreach($users as $user)
-                            <a href="{{ route('profile.wall', ['username' => $user->name]) }}" class="bg-gray-900/40 border border-gray-800 p-4 rounded-2xl flex items-center gap-4 hover:bg-gray-900/60 transition-all group">
+                            <a href="{{ route('profile.wall', ['user' => $user->name]) }}" class="bg-gray-900/40 border border-gray-800 p-4 rounded-2xl flex items-center gap-4 hover:bg-gray-900/60 transition-all group">
                                 <div class="w-12 h-12 bg-gray-800 rounded-xl overflow-hidden flex-shrink-0 border border-gray-700">
                                     @if($user->avatar)
                                         <img src="{{ asset('storage/' . $user->avatar) }}" class="w-full h-full object-cover" alt="">
@@ -63,7 +63,7 @@
                             <div class="bg-gray-900/40 border border-gray-800/60 rounded-2xl hover:bg-gray-900/60 transition-all group overflow-hidden">
                                 <div class="p-6">
                                     <div class="flex gap-4">
-                                        <a href="{{ route('profile.wall', ['username' => $message->user->name]) }}" class="w-12 h-12 bg-gray-800 rounded-xl border border-gray-700 overflow-hidden flex-shrink-0 group-hover:scale-105 transition-transform">
+                                        <a href="{{ route('profile.wall', ['user' => $message->user->name]) }}" class="w-12 h-12 bg-gray-800 rounded-xl border border-gray-700 overflow-hidden flex-shrink-0 group-hover:scale-105 transition-transform">
                                             @if($message->user->avatar)
                                                 <img src="{{ asset('storage/' . $message->user->avatar) }}" class="w-full h-full object-cover" alt="">
                                             @else
@@ -75,7 +75,7 @@
                                         <div class="flex-1 min-w-0">
                                             <div class="flex justify-between items-start mb-2">
                                                 <div class="flex flex-col">
-                                                    <a href="{{ route('profile.wall', ['username' => $message->user->name]) }}" class="font-black text-white hover:text-blue-400 transition-colors truncate">
+                                                    <a href="{{ route('profile.wall', ['user' => $message->user->name]) }}" class="font-black text-white hover:text-blue-400 transition-colors truncate">
                                                         {{ $message->user->name }}
                                                     </a>
                                                     <span class="text-gray-600 text-[11px] font-mono">@ {{ strtolower(str_replace(' ', '', $message->user->name)) }} · {{ $message->created_at->diffForHumans() }}</span>

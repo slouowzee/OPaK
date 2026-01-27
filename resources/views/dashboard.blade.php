@@ -5,7 +5,7 @@
         <aside class="w-full lg:w-80 flex-shrink-0">
             <div class="sticky top-24 space-y-6">
                 <div class="bg-gray-900/40 border border-gray-800 p-6 rounded-3xl">
-                    <h2 class="text-sm font-black text-gray-500 uppercase tracking-[0.2em] mb-6">Nouveau Message</h2>
+                    <h2 class="text-sm font-black text-gray-500 tracking-[0.1em] mb-6">Nouveau Message</h2>
                     
                     <form method="POST" action="{{ route('messages.store') }}" enctype="multipart/form-data" 
                         x-data="{ 
@@ -38,8 +38,8 @@
 
         <main class="flex-1 min-w-0 border-l border-gray-800 pl-0 md:pl-12">
             <div class="flex items-center gap-8 mb-8 border-b border-gray-800">
-                <a href="{{ route('dashboard', ['feed' => 'all']) }}" class="text-sm font-black uppercase tracking-[0.2em] pb-4 border-b-2 {{ $feed === 'all' ? 'border-white text-white' : 'border-transparent text-gray-500 hover:text-gray-300' }} transition-all">Pour vous</a>
-                <a href="{{ route('dashboard', ['feed' => 'following']) }}" class="text-sm font-black uppercase tracking-[0.2em] pb-4 border-b-2 {{ $feed === 'following' ? 'border-white text-white' : 'border-transparent text-gray-500 hover:text-gray-300' }} transition-all">Abonnements</a>
+                <a href="{{ route('dashboard', ['feed' => 'all']) }}" class="text-sm font-black tracking-[0.1em] pb-4 border-b-2 {{ $feed === 'all' ? 'border-white text-white' : 'border-transparent text-gray-500 hover:text-gray-300' }} transition-all">Pour vous</a>
+                <a href="{{ route('dashboard', ['feed' => 'following']) }}" class="text-sm font-black tracking-[0.1em] pb-4 border-b-2 {{ $feed === 'following' ? 'border-white text-white' : 'border-transparent text-gray-500 hover:text-gray-300' }} transition-all">Abonnements</a>
             </div>
 
             <div class="space-y-6">
@@ -47,7 +47,7 @@
                     <div class="bg-gray-900/40 border border-gray-800/60 rounded-2xl hover:bg-gray-900/60 transition-all group overflow-hidden">
                         <div class="p-6">
                             <div class="flex gap-4">
-                                <a href="{{ route('profile.wall', ['username' => $message->user->name]) }}" class="w-12 h-12 bg-gray-800 rounded-xl border border-gray-700 overflow-hidden flex-shrink-0 group-hover:scale-105 transition-transform">
+                                <a href="{{ route('profile.wall', ['user' => $message->user->name]) }}" class="w-12 h-12 bg-gray-800 rounded-xl border border-gray-700 overflow-hidden flex-shrink-0 group-hover:scale-105 transition-transform">
                                     @if($message->user->avatar)
                                         <img src="{{ asset('storage/' . $message->user->avatar) }}" class="w-full h-full object-cover" alt="">
                                     @else
@@ -60,7 +60,7 @@
                                 <div class="flex-1 min-w-0">
                                     <div class="flex justify-between items-start mb-2">
                                         <div class="flex flex-col">
-                                            <a href="{{ route('profile.wall', ['username' => $message->user->name]) }}" class="font-black text-white hover:text-blue-400 transition-colors truncate">
+                                            <a href="{{ route('profile.wall', ['user' => $message->user->name]) }}" class="font-black text-white hover:text-blue-400 transition-colors truncate">
                                                 {{ $message->user->name }}
                                             </a>
                                             <span class="text-gray-600 text-[11px] font-mono">@ {{ strtolower(str_replace(' ', '', $message->user->name)) }} · {{ $message->created_at->diffForHumans() }}</span>

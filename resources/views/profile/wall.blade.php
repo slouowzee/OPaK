@@ -34,15 +34,14 @@
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
-                        <div class="bg-gray-900/50 border border-gray-800/50 p-4 rounded-2xl text-center">
-                            <span class="block text-xl font-black text-white leading-none">{{ $user->followings()->count() }}</span>
-                            <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mt-2 block">Suivis</span>
-                        </div>
-                        <div class="bg-gray-900/50 border border-gray-800/50 p-4 rounded-2xl text-center">
-                            <span class="block text-xl font-black text-white leading-none">{{ $user->followers()->count() }}</span>
-                            <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mt-2 block">Abonnés</span>
-                        </div>
-                    </div>
+                    <a href="{{ route('profile.followings', ['user' => $user->name]) }}" class="bg-gray-900/50 border border-gray-800/50 p-4 rounded-2xl text-center hover:bg-gray-900 transition-colors">
+                        <span class="block text-xl font-black text-white leading-none">{{ $user->followings()->count() }}</span>
+                        <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mt-2 block">Suivis</span>
+                    </a>
+                    <a href="{{ route('profile.followers', ['user' => $user->name]) }}" class="bg-gray-900/50 border border-gray-800/50 p-4 rounded-2xl text-center hover:bg-gray-900 transition-colors">
+                        <span class="block text-xl font-black text-white leading-none">{{ $user->followers()->count() }}</span>
+                        <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mt-2 block">Abonnés</span>
+                    </a>
 
                     <div class="flex items-center gap-3 text-gray-400 text-xs font-medium">
                         <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -129,7 +128,7 @@
                     <div class="bg-gray-900/40 border border-gray-800/60 p-6 rounded-2xl hover:bg-gray-900/60 transition-all group">
                         <div class="flex flex-col gap-4">
                             <div class="flex flex-col">
-                                <span class="text-[10px] font-mono text-gray-500 mb-2 uppercase tracking-widest">En réponse à <a href="{{ route('profile.wall', ['username' => $reply->parent->user->name]) }}" class="text-blue-500 hover:underline">@ {{ strtolower(str_replace(' ', '', $reply->parent->user->name)) }}</a></span>
+                                <span class="text-[10px] font-mono text-gray-500 mb-2 uppercase tracking-widest">En réponse à <a href="{{ route('profile.wall', ['user' => $reply->parent->user->name]) }}" class="text-blue-500 hover:underline">@ {{ strtolower(str_replace(' ', '', $reply->parent->user->name)) }}</a></span>
                                 <a href="{{ route('messages.show', $reply) }}" class="block">
                                     <p class="text-gray-100 text-lg leading-relaxed">
                                         {!! $reply->content_formatted !!}

@@ -26,7 +26,9 @@ Route::get('/', function (Illuminate\Http\Request $request) {
 Route::middleware('auth')->group(function () {
     Route::get('/search', [SearchController::class, 'index'])->name('search');
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
-	Route::get('/@{username}', [ProfileController::class, 'wall'])->name('profile.wall');
+    Route::get('/@{user}/followers', [ProfileController::class, 'followers'])->name('profile.followers');
+    Route::get('/@{user}/followings', [ProfileController::class, 'followings'])->name('profile.followings');
+	Route::get('/@{user}', [ProfileController::class, 'wall'])->name('profile.wall');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

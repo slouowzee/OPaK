@@ -55,7 +55,7 @@
                          x-transition:leave-end="transform opacity-0 scale-95"
                          class="absolute right-0 z-50 mt-2 w-52 rounded-lg border border-gray-800 bg-black py-2 shadow-xl origin-top-right" 
                          style="display: none;">
-                        <a href="{{ route('profile.wall', ['username' => Auth::user()->name]) }}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900">
+                        <a href="{{ route('profile.wall', ['user' => Auth::user()->name]) }}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900">
                             Votre page
                         </a>
 						<a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900">

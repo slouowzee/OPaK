@@ -45,7 +45,7 @@
         <main class="flex-1 min-w-0 border-l border-gray-800 pl-0 md:pl-12">
             <div class="bg-gray-900/40 border border-gray-800 p-8 rounded-3xl space-y-6 mb-12">
                 <div class="flex items-center gap-4">
-                    <a href="{{ route('profile.wall', ['username' => $message->user->name]) }}" class="w-14 h-14 bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden flex-shrink-0">
+                    <a href="{{ route('profile.wall', ['user' => $message->user->name]) }}" class="w-14 h-14 bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden flex-shrink-0">
                         @if($message->user->avatar)
                             <img src="{{ asset('storage/' . $message->user->avatar) }}" class="w-full h-full object-cover" alt="">
                         @else
@@ -91,7 +91,7 @@
                 @foreach($message->replies as $reply)
                     <div class="bg-gray-900/20 border border-gray-800/60 p-6 rounded-2xl group">
                         <div class="flex gap-4">
-                            <a href="{{ route('profile.wall', ['username' => $reply->user->name]) }}" class="w-10 h-10 bg-gray-800 rounded-xl border border-gray-700 overflow-hidden flex-shrink-0">
+                            <a href="{{ route('profile.wall', ['user' => $reply->user->name]) }}" class="w-10 h-10 bg-gray-800 rounded-xl border border-gray-700 overflow-hidden flex-shrink-0">
                                 @if($reply->user->avatar)
                                     <img src="{{ asset('storage/' . $reply->user->avatar) }}" class="w-full h-full object-cover" alt="">
                                 @else

@@ -12,15 +12,12 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
-	public function wall(string $name): View
+	public function wall(User $user): View
 	{
-		$user = Auth::user();
-		if ($user->name !== $name) {
-			$user = \App\Models\User::where('name', $name)->firstOrFail();
-		}
 		return view('profile.wall', [
 			'user' => $user,
 			'messages' => $user->messages()->whereNull('parent_id')->latest()->get(),
@@ -128,5 +125,27 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+	    /**
+     * Affiche la liste des abonnés d'un utilisateur.
+     */
+    public function followers(User $user): View
+    {
+        return view('profile.followers', [
+            'user' => $user,
+            'users' => $user->followers()->paginate(20)
+        ]);
+    }
+
+    /**
+     * Affiche la liste des abonnements d'un utilisateur.
+     */
+    public function followings(User $user): View
+    {
+        return view('profile.followings', [
+            'user' => $user,
+            'users' => $user->followings()->paginate(20)
+        ]);
     }
 }

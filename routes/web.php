@@ -6,6 +6,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotificationController;
 
+Route::get('/error-log', function () {
+    $logPath = storage_path('logs/error.log');
+    if (file_exists($logPath)) {
+        return response()->file($logPath);
+    }
+    return 'No error log yet';
+});
+
 Route::get('/', function (Illuminate\Http\Request $request) {
     $feed = $request->query('feed', 'all');
     $user = Auth::user();

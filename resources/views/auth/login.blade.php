@@ -5,14 +5,14 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <!-- Login -->
+        <!-- Identifiant -->
         <div>
-            <label for="login" class="block font-bold text-sm text-gray-400">Login</label>
+            <label for="login" class="block font-bold text-sm text-gray-400">Identifiant</label>
             <input id="login" class="block mt-1 w-full bg-black border border-gray-800 focus:border-white focus:ring-0 text-white rounded-md shadow-sm placeholder-gray-600" type="text" name="login" :value="old('login')" required autofocus autocomplete="username" placeholder="Pseudo ou email" />
             <x-input-error :messages="$errors->get('login')" class="mt-2" />
         </div>
 
-        <!-- Password -->
+        <!-- Mot de passe -->
         <div class="mt-4" x-data="{ show: false }">
             <div class="flex justify-between items-center mb-1">
                 <label for="password" class="block font-bold text-sm text-gray-400">Mot de passe</label>

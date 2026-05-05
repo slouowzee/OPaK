@@ -48,7 +48,7 @@ L'application sera accessible sur `http://127.0.0.1:8000`.
 ## Fonctionnalités principales
 
 - **Fil d'actualité** : Posts de tous les utilisateurs ou seulement des abonnements.
-- **Messages** : Créer, liker et répondre aux messages.
-- **Social** : Suivre (follow) d'autres utilisateurs.
+- **Messages** : Créer, aimer et répondre aux messages.
+- **Social** : Suivre d'autres utilisateurs.
 - **Profil** : Gestion de profil, avatar, mur personnel.
 - **Notifications** : Alertes sur les interactions.

@@ -9,14 +9,14 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <!-- Email Address -->
+        <!-- Adresse email -->
         <div class="mt-4">
-            <label for="email" class="block font-bold text-sm text-gray-400">Email</label>
+            <label for="email" class="block font-bold text-sm text-gray-400">Courriel</label>
             <input id="email" class="block mt-1 w-full bg-black border border-gray-800 focus:border-white focus:ring-0 text-white rounded-md shadow-sm placeholder-gray-600" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="votre@email.com" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Password -->
+        <!-- Mot de passe -->
         <div class="mt-4" x-data="{ show: false }">
             <div class="flex justify-between items-center mb-1">
                 <label for="password" class="block font-bold text-sm text-gray-400">Mot de passe</label>
@@ -33,7 +33,7 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <!-- Confirm Password -->
+        <!-- Confirmation du mot de passe -->
         <div class="mt-4" x-data="{ show: false }">
             <div class="flex justify-between items-center mb-1">
                 <label for="password_confirmation" class="block font-bold text-sm text-gray-400">Confirmation</label>

@@ -1,2 +1,7 @@
+[phases.setup]
+cmds = [
+  "echo 'upload_max_filesize=50M\\npost_max_size=50M' > /usr/local/etc/php/conf.d/uploads.ini"
+]
+
 [start]
 cmd = "php artisan storage:link --force && node /assets/scripts/prestart.mjs /assets/nginx.template.conf /nginx.conf && (php-fpm -y /assets/php-fpm.conf & nginx -c /nginx.conf)"

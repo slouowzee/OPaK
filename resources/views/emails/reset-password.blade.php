@@ -5,14 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Réinitialisation mot de passe</title>
     <style>
-        @font-face {
-            font-family: 'IBMPlexMono';
-            src: url('../assets/font/IBMPlexMono-Regular.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
         body {
-            font-family: 'IBMPlexMono', monospace;
+            font-family: monospace;
             background-color: #000;
             color: #fff;
             line-height: 1.6;
@@ -22,34 +16,37 @@
         .container {
             max-width: 500px;
             margin: 0 auto;
-            border: 1px solid #dc2626;
             padding: 30px;
         }
         .header {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 900;
             letter-spacing: 0.2em;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            color: #3b82f6;
         }
         .content {
             margin-bottom: 20px;
         }
         .button {
             display: inline-block;
-            background-color: #dc2626;
+            background-color: #3b82f6;
             color: #fff;
-            padding: 12px 24px;
+            padding: 14px 28px;
             text-decoration: none;
             font-weight: 600;
             margin: 20px 0;
+            border: none;
         }
         .button:hover {
-            background-color: #b91c1c;
+            background-color: #2563eb;
         }
         .footer {
             font-size: 0.8rem;
             color: #666;
-            margin-top: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
         }
     </style>
 </head>
@@ -59,19 +56,18 @@
         
         <div class="content">
             <p>Bonjour,</p>
-            <p>Vous avez demandé la réinitialisation de votre mot de passe sur OPaK.</p>
-            <p>Cliquez sur le bouton ci-dessous pour créer un nouveau mot de passe :</p>
+            <p>Vous avez demandé la réinitialisation de votre mot de passe.</p>
         </div>
         
-        <a href="{{ $url }}" class="button">Réinitialiser mon mot de passe</a>
+        <a href="{{ $url }}" class="button">Réinitialiser</a>
         
         <div class="content">
             <p>Ce lien expire dans 60 minutes.</p>
-            <p>Si vous n'avez pas demandé cette réinitialisation, vous pouvez ignorer cet email.</p>
+            <p>Si vous n'avez pas demandé cette réinitialisation, ignorez cet email.</p>
         </div>
         
         <div class="footer">
-            <p>— L'équipe OPaK</p>
+            <p>— OPaK</p>
         </div>
     </div>
 </body>

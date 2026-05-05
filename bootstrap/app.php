@@ -14,5 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->trustProxies(at: '*P');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->report(function (\Throwable $e) {
+            file_put_contents(
+                dirname(__DIR__) . '/error_log.txt',
+                date('Y-m-d H:i:s') . ' - ' . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n\n",
+                FILE_APPEND
+            );
+        });
     })->create();

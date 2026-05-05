@@ -1,6 +1,7 @@
 [phases.setup]
 cmds = [
-  "cp /app/php-fpm.conf /assets/php-fpm.conf"
+  "cp /app/php-fpm.conf /assets/php-fpm.conf",
+  "cp /app/nginx.template.conf /assets/nginx.template.conf"
 ]
 
 [start]
